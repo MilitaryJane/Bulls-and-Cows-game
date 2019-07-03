@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang = "ru">
+    <head>
+        <meta charset = "utf-8">
+        <title>Игра "Быки и Коровы".</title>
+        <link href = "img/cow.jpg" rel = "shortcut icon" type = "image/x-icon">
+        <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&amp;subset=cyrillic" rel="stylesheet">
+        <link href = "css/normalize.css" rel = "stylesheet">
+        <link href = "css/style.css" rel = "stylesheet">
+
+    </head>
+    <body>
+        <header class = "main-header">
+            <div class  = "container">
+                <nav class = "main-navigation">
+                    <ul class = "top-menu menu-left">
+                        <li><a class = "game-complexity" href = "#">Сложность игры</a>
+                            <ul class = "inner-menu">
+                                <li>
+                                    <input class = "complexity" type = "radio" id = "complexity1" name = "complexity" value = "4" checked> 
+                                    <label for = "complexity1">Новичок - 4 цифры</label>
+                                </li>
+                                <li>
+                                    <input class = "complexity" type = "radio" id = "complexity2" name = "complexity" value = "5"> 
+                                    <label for = "complexity2">Любитель - 5 цифр</label>
+                                </li>
+                                <li>
+                                    <input class = "complexity" type = "radio" id = "complexity3" name = "complexity" value = "6"> 
+                                    <label for = "complexity3">Профессионал - 6 цифр</label>
+                                </li>
+                            </ul>
+                        </li> 
+                        <li><a class = "rules" href = "#">Правила игры</a></li>
+                    </ul>
+                    <div class = "menu-title">
+                        <img src = "img/cow1.png" width = "120" height = "40" alt = "Изображение с коровой">
+                        <h1 class = "play-name">Быки и Коровы</h1>
+                        <img src = "img/bull.png" width = "120" height = "40" alt = "Изображение с быком">
+                    </div>
+                    <ul class = "menu-right">   
+                        <li><a class = "" href = "bulls and cows.html">Начать сначала</a></li>
+                        <li><a class = "" href = "#">Вернуться на главную</a></li>
+                    </ul>
+                </nav>    
+            </div> 
+        </header>
+        <main>
+            <diV class = "main-field">    
+                <div class = "versions left-field"></div>
+
+                <div class = "central">
+
+                    <div class = "question-field">
+                        <input class = "question" type = "password">
+                        <input class = "question" type = "password">
+                        <input class = "question" type = "password">
+                        <input class = "question" type = "password">
+                        <input class = "question complexity2" type = "password">
+                        <input class = "question complexity3" type = "password">
+                    </div>
+
+                    <div class = "button-plus-field">
+                        <button class = "button-plus" type = "button"><span class = "visually-hidden">плюс</span></button>
+                        <button class = "button-plus" type = "button"><span class = "visually-hidden">плюс</span></button>
+                        <button class = "button-plus" type = "button"><span class = "visually-hidden">плюс</span></button>
+                        <button class = "button-plus" type = "button"><span class = "visually-hidden">плюс</span></button>
+                        <button class = "button-plus complexity2" type = "button"><span class = "visually-hidden">плюс</span></button>
+                        <button class = "button-plus complexity3" type = "button"><span class = "visually-hidden">плюс</span></button>
+                    </div>
+
+                    <div class = "answer-field">
+                        <input class = "answer" type = "text" maxlength = "1" value = "0" autofocus>
+                        <input class = "answer" type = "text" maxlength = "1" value = "0">
+                        <input class = "answer" type = "text" maxlength = "1" value = "0">
+                        <input class = "answer" type = "text" maxlength = "1" value = "0">
+                        <input class = "answer complexity2" type = "text" maxlength = "1" value = "0">
+                        <input class = "answer complexity3" type = "text" maxlength = "1" value = "0"> 
+                    </div>
+
+                    <div class = "button-minus-field">
+                        <button class = "button-minus" type = "button"><span class = "visually-hidden">минус</span></button>
+                        <button class = "button-minus" type = "button"><span class = "visually-hidden">минус</span></button>
+                        <button class = "button-minus" type = "button"><span class = "visually-hidden">минус</span></button>
+                        <button class = "button-minus" type = "button"><span class = "visually-hidden">минус</span></button>
+                        <button class = "button-minus complexity2" type = "button"><span class = "visually-hidden">минус</span></button>
+                        <button class = "button-minus complexity3" type = "button"><span class = "visually-hidden">минус</span></button>
+
+                    </div>
+
+                    <input class = "button check-button" type = "submit" value = "Проверить">
+
+                    <div class = "keyboard-field">
+                        <button class = "keyboard" data-type = "1">1</button>
+                        <button class = "keyboard" data-type = "2">2</button>
+                        <button class = "keyboard" data-type = "3">3</button>
+                        <button class = "keyboard" data-type = "4">4</button>
+                        <button class = "keyboard" data-type = "5">5</button>
+                        <button class = "keyboard" data-type = "6">6</button>
+                        <button class = "keyboard" data-type = "7">7</button>
+                        <button class = "keyboard" data-type = "8">8</button>
+                        <button class = "keyboard" data-type = "9">9</button>
+                        <button class = "keyboard" data-type= "0">0</button>
+                    </div>
+                </div>
+
+                <div class = "versions2 right-field"></div>
+            </diV>
+
+            <div class = "modal-victory">
+                <h1 class = "victory">ПОБЕДА!</h1>
+                <p>Было загадано число: <span class = "quest-number"></span></p>
+                <p>Время игры: <span class = "play-time"></span></p>
+                <p>Сделано ходов:<span class = "play-moovs"></span></p>
+
+                <div class = "modal-button">
+                    <a class = "button new-start-button" href = "bulls and cows.html">Начать сначала</a>
+                    <a class = "button menu-button" href = "#">Вернуться на главную</a>
+                </div>
+
+                <button class = "button-close">X</button>
+            </div>
+            <div class = "modal-overlay"></div>
+
+
+            <div class = "modal-rules">
+                <h2>Правила игры "Быки и коровы"</h2>
+                <p> Компьютер задумывает тайное 4-значное число с неповторяющимися цифрами. Игрок делает первую попытку отгадать число. 
+                    Попытка — это 4-значное число с неповторяющимися цифрами, сообщаемое компьютеру. Компьютер сообщает в ответ, сколько цифр угадано без совпадения с их позициями в тайном числе (то есть количество коров) 
+                    и сколько угадано вплоть до позиции в тайном числе (то есть количество быков). Например:</p>
+
+                <p>Задумано тайное число «3219».</p>
+                <p>Попытка: «2310».</p>
+                <p>Результат: две «коровы» (две цифры: «2» и «3» — угаданы на неверных позициях) и один «бык» (одна цифра «1» угадана вплоть до позиции).</p>
+                        
+                <p>Игрок побеждает тогда, когда будет отгадана вся последовательность чисел.</p>
+
+                <p>Готов испытать себя?</p>
+
+                <a class = "button new-start-button" href = "bulls and cows.html">Начать игру</a>
+
+                <button class = "button-close">X</button>
+
+            </div> 
+        </main>
+
+        <script src = "js/js1.js"></script>
+    </body>
+</html> 
+
