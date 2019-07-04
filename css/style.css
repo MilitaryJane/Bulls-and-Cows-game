@@ -10,7 +10,7 @@ body {
     color: #45261c;
 
     background-color: #ffffff;
-    background-image: url("../img/bg-3.jpg");
+    background-image: url("../img/bg.jpg");
     background-position: top center;
     background-repeat: no-repeat;
 }
@@ -68,7 +68,7 @@ input[type = "radio"].visually-hidden {
 
     border-radius: 25px;
     background-color: #a27d62;
-    background-image: url("../img/dark-desk.png");
+    background-image: url("../img/dark-desk.jpg");
     background-position: top center;
     background-repeat: no-repeat;
 }
@@ -170,7 +170,7 @@ input[type = "radio"].visually-hidden {
 }
 
 .inner-menu .sub-menu {
-    background-image: url("../img/light-desk-ltl.png");
+    background-image: url("../img/light-desk-ltl.jpg");
     background-position: top center;
     background-repeat: no-repeat;
     margin-bottom: 4px;
@@ -391,9 +391,7 @@ input[type = "radio"].visually-hidden {
 }
 
 .button:active {
-    background-image: url("../img/Layer\ 1.png");
-    /* box-shadow: inset 0 -8px 50px rgba(69, 38, 28, 1); */
-  
+    background-image: url("../img/button-desk-dark.jpg");
 }
 
 
@@ -594,7 +592,7 @@ input[type = "radio"].visually-hidden {
     padding: 20px;
     
     background-color: #2f2f2f;
-    background-image: url('../img/modal-bk-bb.jpg');
+    background-image: url("../img/modal-bk-bb.jpg");
     background-position-y: -1px; 
     background-repeat: no-repeat; 
     border-radius: 50px;
@@ -852,7 +850,7 @@ input[type = "radio"].visually-hidden {
     padding: 20px;
     
     background-color: #2f2f2f;
-    background-image: url('../img/modal-bk-big.jpg');
+    background-image: url("../img/modal-bk-big.jpg");
     background-position-y: -1px;
     background-repeat: no-repeat; 
     border-radius: 40px;
@@ -884,8 +882,6 @@ input[type = "radio"].visually-hidden {
 }
 
 
-
-
 /* модуль предупреждения о сбросе прогресса при смене сложности */
 .modal-warning {
     width: 400px;
@@ -898,7 +894,7 @@ input[type = "radio"].visually-hidden {
     padding: 30px 20px 20px 20px;
 
     background-color: #2f2f2f;
-    background-image: url('../img/modal-bk.jpg');
+    background-image: url("../img/modal-bk.jpg");
     background-position-y: -1px;
     background-repeat: no-repeat; 
     text-align: center;
