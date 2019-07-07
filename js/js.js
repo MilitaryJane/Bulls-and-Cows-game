@@ -82,7 +82,11 @@ function IsConfirmChange(evt) {
     if (this.value == "true") {
         currentCheckedElem = getChecked();
         createElement();
-
+        (function () {
+            for (let i = 0; i < answerElems.length; i++) {
+                answerElems[i].value = '0';
+            }
+        })();
         arrayOfRandomNumber = getArrayOfRandomNumber(getChecked().value);
         getQuestionElem();
         answerElems[0].focus();
@@ -106,12 +110,15 @@ function createElement() {
         if (getChecked().value == 5) {
             complexity2[i].classList.remove('complexity2');
 
+
         } else if (getChecked().value == 6) {
             complexity2[i].classList.remove('complexity2');
             complexity3[i].classList.remove('complexity3');
         }
     }
 }
+
+
 
 
 
@@ -215,9 +222,8 @@ window.addEventListener('keydown', function (event) {
 });
 
 function runCheck() {
-    if (inputValidation(answerElems)) {
-        alert('Ошибка! В одну из ячеек введено не число!');
-    } else {
+    if (inputValidation(answerElems, arrayOfRandomNumber)) {
+
         let answer = getArrayOfAnswer(answerElems);
         let bulls = areBulls(answer, arrayOfRandomNumber);
         let cows = areCows(answer, arrayOfRandomNumber, bulls);
@@ -227,7 +233,23 @@ function runCheck() {
         let versions2 = document.querySelector('.versions2');
         let p = document.createElement('p');
         p.classList.add('result');
-        p.textContent = countStep + '.     ' + answer.join(' ') + '.     быков: ' + bulls + ', коров: ' + cows;
+        let countStepSpan = document.createElement('span');
+        countStepSpan.classList.add('count-step-span');
+        countStepSpan.textContent = countStep + '.';
+        p.appendChild(countStepSpan);
+        let answerVersoinSpan = document.createElement('span');
+        answerVersoinSpan.classList.add('answer-version-span');
+        answerVersoinSpan.textContent = answer.join(' ');
+        p.appendChild(answerVersoinSpan);
+        let bullsSpan = document.createElement('span');
+        bullsSpan.classList.add('bulls-span');
+        bullsSpan.textContent = 'быков: ' + bulls;
+        p.appendChild(bullsSpan);
+        let cowsSpan = document.createElement('span');
+        cowsSpan.classList.add('cows-span');
+        cowsSpan.textContent = ', коров: ' + cows;
+        p.appendChild(cowsSpan);
+
         if (countStep < 16 || countStep > 30) {
             versions.appendChild(p);
         } else {
@@ -284,11 +306,26 @@ function areCows(userArray, arrayOfRandomNumber, bulls) {
 }
 
 
-function inputValidation(array) {
+function inputValidation(array, array2) {
     for (let i = 0; i < array.length; i++) {
-        return isNaN(+array[i].value);
+        if (isNaN(+array[i].value)) {
+            alert('Ошибка! В одну или несколько ячеек введено не число!');
+            return false;
+        }
     }
+    for (let j = 0; j < array2.length - 1; j++) {
+        for (let k = j + 1; k < array2.length; k++) {
+            if (array[j].value == array[k].value) {
+                console.log(array[j].value, array[k].value)
+                alert('Ошибка! В некоторые ячейки введены одинаковые числа!');
+                return false;
+            }
+        }
+    }
+    return true;
 }
+
+
 
 function getArrayOfAnswer(array) {
     let userArray = [];
@@ -317,6 +354,8 @@ function getArrayOfRandomNumber(number) {
     console.log(array);
     return array;
 }
+
+
 
 
 

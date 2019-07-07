@@ -258,7 +258,7 @@ input[type="radio"].visually-hidden {
 .right-field {
     margin: 0;
     margin-top: 50px;
-    padding: 5px 0;
+    padding: 4px 0;
     display: inline-block;
     width: 400px;
     height: 500px;
@@ -270,10 +270,32 @@ input[type="radio"].visually-hidden {
 
 .left-field p,
 .right-field p {
+    display: inline-block;
     margin: 0;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     padding: 0;
 
+}
+
+.count-step-span {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    font-size: 15px;
+    margin-right: 20px;
+    color: #864f22;
+
+}
+
+.answer-version-span {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.bulls-span,
+.cows-span {
+    display: inline-block;
+    color: #864f22;
 }
 
 .question,
