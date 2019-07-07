@@ -238,6 +238,7 @@ function runCheck() {
                 questionMask[i].classList.add('visually-hidden');
             }
             toShowvVictory();
+            stopTaimer();
         }
         countStep++;
 
@@ -260,7 +261,6 @@ function areBulls(userArray, arrayOfRandomNumber) {
 }
 
 function toShowvVictory() {
-    playTime.textContent = 1;
     questNumber.textContent = arrayOfRandomNumber.join(' ');
     playMoovs.textContent = countStep;
     victory.classList.add('modal-victory-show');
@@ -316,4 +316,40 @@ function getArrayOfRandomNumber(number) {
         }
     console.log(array);
     return array;
+}
+
+
+
+window.addEventListener('load', startTaimer);
+
+let id;
+let time = 0;
+
+function startTaimer() {
+    id = setInterval(function () {
+        time++;
+    }, 1000);
+}
+
+function stopTaimer() {
+    clearInterval(id);
+    timeTranslater();
+}
+
+function timeTranslater() {
+    let hour = 0;
+    let minute = 0;
+    let second = 0;
+    hour = Math.floor(time / 3600);
+    minute = Math.floor(time % 3600 / 60);
+    second = (time % 3600) % 60;
+    playTime.textContent = addZero(hour) + ":" + addZero(minute) + ":" + addZero(second);
+
+}
+
+function addZero(num) {
+    if (num <= 9) {
+        num = '0' + num;
+    }
+    return num;
 }
