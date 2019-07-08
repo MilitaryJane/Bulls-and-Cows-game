@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 let rules = document.querySelector('.rules');
 let modalRules = document.querySelector('.modal-rules');
@@ -359,12 +359,12 @@ function getArrayOfRandomNumber(number) {
 
 
 
-window.addEventListener('load', startTaimer);
+window.addEventListener('load', startTimer);
 
 let id;
 let time = 0;
 
-function startTaimer() {
+function startTimer() {
     id = setInterval(function () {
         time++;
     }, 1000);
