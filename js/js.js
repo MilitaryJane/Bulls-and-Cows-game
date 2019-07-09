@@ -89,6 +89,15 @@ function IsConfirmChange(evt) {
         arrayOfRandomNumber = getArrayOfRandomNumber(getChecked().value);
         getQuestionElem();
         answerElems[0].focus();
+        (function () {
+            for (let i = 0; i < questionMask.length; i++) {
+                if (questionMask[i].classList.contains('visually-hidden')) {
+                    questionMask[i].classList.remove('visually-hidden');
+                }
+            }
+            checkButton.addEventListener('click', runCheck);
+        })();
+
     } else {
         currentCheckedElem.checked = true;
     };
@@ -248,7 +257,7 @@ window.addEventListener('keydown', function (event) {
 });
 
 
-
+let questionMask = document.querySelectorAll('.question-mask');
 
 function runCheck() {
     if (inputValidation(answerElems, arrayOfRandomNumber)) {
@@ -256,7 +265,7 @@ function runCheck() {
         let answer = getArrayOfAnswer(answerElems);
         let bulls = areBulls(answer, arrayOfRandomNumber);
         let cows = areCows(answer, arrayOfRandomNumber, bulls);
-        let questionMask = document.querySelectorAll('.question-mask');
+
 
         let versions = document.querySelector('.versions');
         let versions2 = document.querySelector('.versions2');
@@ -336,9 +345,13 @@ function areCows(userArray, arrayOfRandomNumber, bulls) {
 
 
 function inputValidation(array, array2) {
-    for (let i = 0; i < array.length; i++) {
+    for (let i = 0; i < array2.length; i++) {
         if (isNaN(+array[i].value)) {
             alert('Ошибка! В одну или несколько ячеек введено не число!');
+            return false;
+        }
+        if (array[i].value == '' || array[i].value == ' ') {
+            alert('Ошибка! Заполнены не все ячейки!');
             return false;
         }
     }
@@ -351,6 +364,10 @@ function inputValidation(array, array2) {
         }
     }
     return true;
+}
+
+function isNumeric(num) {
+    return isNaN(parseFloat(num)) && isFinite(n);
 }
 
 
