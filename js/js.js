@@ -31,6 +31,10 @@ window.addEventListener('keydown', function (event) {
     }
 });
 
+
+
+
+
 let questionElems = document.querySelectorAll('.question');
 let radios = document.querySelectorAll('.complexity');
 let complexity2 = document.querySelectorAll('.complexity2');
@@ -82,11 +86,6 @@ function IsConfirmChange(evt) {
     if (this.value == "true") {
         currentCheckedElem = getChecked();
         createElement();
-        (function () {
-            for (let i = 0; i < answerElems.length; i++) {
-                answerElems[i].value = '0';
-            }
-        })();
         arrayOfRandomNumber = getArrayOfRandomNumber(getChecked().value);
         getQuestionElem();
         answerElems[0].focus();
@@ -94,6 +93,8 @@ function IsConfirmChange(evt) {
         currentCheckedElem.checked = true;
     };
 }
+
+
 
 
 function createElement() {
@@ -130,32 +131,61 @@ function getQuestionElem() {
     }
 }
 
+
+
+
 let countStep = 1;
 let answerElems = document.querySelectorAll('.answer');
+answerElems = Array.prototype.slice.call(answerElems);
 let checkButton = document.querySelector('.check-button');
 let plusButtonElems = document.querySelectorAll('.button-plus');
 let minusButtonElems = document.querySelectorAll('.button-minus');
 let keyboard = document.querySelectorAll('.keyboard');
+let self = document.activeElement;
+
 
 
 for (let j = 0; j < answerElems.length; j++) {
-    answerElems[j].addEventListener('focus', function (event) {
-        event.preventDefault();
+    answerElems[j].addEventListener('click', function (evt) {
+        evt.preventDefault();
         answerElems[j].value = '';
-        answerElems[j].addEventListener('keypress', function (event) {
-            event.preventDefault();
-            if (event.keyCode >= 48 && event.keyCode <= 57 || event.keyCode >= 96 && event.keyCode <= 105) {
-                answerElems[j].value = String.fromCharCode(event.keyCode);
-                if (j + 1 < answerElems.length) {
-                    answerElems[j + 1].focus();
-                } else {
-                    checkButton.focus();
-                }
-            }
-        });
     });
 
+    answerElems[j].addEventListener('focus', function (evt) {
+        evt.preventDefault();
+        this.addEventListener('keypress', function (evt) {
+            evt.preventDefault();
+            if (evt.keyCode >= 48 && evt.keyCode <= 57 || evt.keyCode >= 96 && evt.keyCode <= 105) {
+                this.value = String.fromCharCode(evt.keyCode);
 
+            }
+
+
+        });
+        self = evt.target;
+    });
+
+}
+
+
+for (let i = 0; i < keyboard.length; i++) {
+    keyboard[i].addEventListener('click', function (evt) {
+        evt.preventDefault();
+        self.value = this.getAttribute('data-type');
+        transferFocus();
+    });
+}
+
+function transferFocus() {
+    let currentIndex = answerElems.indexOf(self);
+    if (currentIndex + 1 < arrayOfRandomNumber.length) {
+        answerElems[currentIndex + 1].focus();
+    } else {
+        checkButton.focus();
+    }
+}
+
+for (let j = 0; j < answerElems.length; j++) {
     plusButtonElems[j].addEventListener('click', function (event) {
         event.preventDefault();
         if (+answerElems[j].value < 9) {
@@ -175,14 +205,10 @@ for (let j = 0; j < answerElems.length; j++) {
 }
 
 
-for (let j = 0; j < keyboard.length; j++) {
-    keyboard[j].addEventListener('click', getKeyboardNumber);
-}
 
-answerElems[0].focus();
 
-function getKeyboardNumber(event) {
-    event.preventDefault();
+function getKeyboardNumber(evt) {
+    evt.preventDefault();
     for (let i = 0; i < answerElems.length; i++) {
         if (answerElems[i].value == '') {
             answerElems[i].value = this.getAttribute('data-type');
@@ -220,6 +246,9 @@ window.addEventListener('keydown', function (event) {
         }
     }
 });
+
+
+
 
 function runCheck() {
     if (inputValidation(answerElems, arrayOfRandomNumber)) {
@@ -265,7 +294,7 @@ function runCheck() {
         countStep++;
 
         for (let i = 0; i < answerElems.length; i++) {
-            answerElems[i].value = '0';
+            answerElems[i].value = '';
         }
         answerElems[0].focus();
     }
@@ -316,7 +345,6 @@ function inputValidation(array, array2) {
     for (let j = 0; j < array2.length - 1; j++) {
         for (let k = j + 1; k < array2.length; k++) {
             if (array[j].value == array[k].value) {
-                console.log(array[j].value, array[k].value)
                 alert('Ошибка! В некоторые ячейки введены одинаковые числа!');
                 return false;
             }
@@ -334,6 +362,7 @@ function getArrayOfAnswer(array) {
     }
     return userArray;
 }
+
 
 
 function getArrayOfRandomNumber(number) {
