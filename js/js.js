@@ -1,12 +1,13 @@
 'use strict';
 
+window.addEventListener('DOMContentLoaded', window.timerUtils.startTimer);
+
+//модуль открытия и закрытия попапа правила 
 let rules = document.querySelector('.rules');
 let modalRules = document.querySelector('.modal-rules');
 let overlay = document.querySelector('.modal-overlay');
 let buttonRulesClose = modalRules.querySelector('.button-close');
 let buttonStart = document.querySelectorAll('.new-start-button');
-
-
 
 rules.addEventListener('click', function (event) {
     event.preventDefault();
@@ -35,6 +36,7 @@ window.addEventListener('keydown', function (event) {
 
 
 
+
 let questionElems = document.querySelectorAll('.question');
 let radios = document.querySelectorAll('.complexity');
 let complexity2 = document.querySelectorAll('.complexity2');
@@ -54,20 +56,26 @@ function getChecked() {
     return checked;
 }
 
-let modalWarning = document.querySelector('.modal-warning');
+
 
 let currentCheckedElem = getChecked();
 
 
+
+
+
+let modalWarning = document.querySelector('.modal-warning');
 for (let i = 0; i < radios.length; i++) {
     radios[i].addEventListener('change', openWarningModal)
 }
 
-
+//функуия отурытия попапа подтверждения выбора
 function openWarningModal() {
     modalWarning.classList.add('modal-warning-show');
     overlay.classList.add('overlay-show');
 }
+
+
 
 
 let buttonOk = modalWarning.querySelector('.button-ok');
@@ -77,6 +85,7 @@ buttonCancel.addEventListener('click', IsConfirmChange);
 
 function IsConfirmChange(evt) {
     evt.preventDefault();
+
     (function closeWarningModal() {
         modalWarning.classList.remove('modal-warning-show');
         overlay.classList.remove('overlay-show');
@@ -89,6 +98,8 @@ function IsConfirmChange(evt) {
         arrayOfRandomNumber = getArrayOfRandomNumber(getChecked().value);
         getQuestionElem();
         answerElems[0].focus();
+
+        //функция перезапуска игры
         (function () {
             for (let i = 0; i < questionMask.length; i++) {
                 if (questionMask[i].classList.contains('visually-hidden')) {
@@ -96,11 +107,11 @@ function IsConfirmChange(evt) {
                 }
             }
             checkButton.addEventListener('click', runCheck);
-        })();
+            window.timerUtils.startTimer();
 
-    } else {
-        currentCheckedElem.checked = true;
-    };
+        })();
+    }
+    currentCheckedElem.checked = true;
 }
 
 
@@ -298,7 +309,7 @@ function runCheck() {
                 questionMask[i].classList.add('visually-hidden');
             }
             toShowvVictory();
-            stopTaimer();
+            window.timerUtils.stopTimer();
         }
         countStep++;
 
@@ -322,6 +333,7 @@ function areBulls(userArray, arrayOfRandomNumber) {
 
 function toShowvVictory() {
     questNumber.textContent = arrayOfRandomNumber.join(' ');
+    playTime.textContent = window.timerUtils.timeTranslater();
     playMoovs.textContent = countStep;
     victory.classList.add('modal-victory-show');
     overlay.classList.add('overlay-show');
@@ -344,6 +356,8 @@ function areCows(userArray, arrayOfRandomNumber, bulls) {
 }
 
 
+
+//модуль проверки валидности вводимых данных
 function inputValidation(array, array2) {
     for (let i = 0; i < array2.length; i++) {
         if (isNaN(+array[i].value)) {
@@ -366,9 +380,6 @@ function inputValidation(array, array2) {
     return true;
 }
 
-function isNumeric(num) {
-    return isNaN(parseFloat(num)) && isFinite(n);
-}
 
 
 
@@ -399,42 +410,4 @@ function getArrayOfRandomNumber(number) {
         }
     console.log(array);
     return array;
-}
-
-
-
-
-
-window.addEventListener('load', startTimer);
-
-let id;
-let time = 0;
-
-function startTimer() {
-    id = setInterval(function () {
-        time++;
-    }, 1000);
-}
-
-function stopTaimer() {
-    clearInterval(id);
-    timeTranslater();
-}
-
-function timeTranslater() {
-    let hour = 0;
-    let minute = 0;
-    let second = 0;
-    hour = Math.floor(time / 3600);
-    minute = Math.floor(time % 3600 / 60);
-    second = (time % 3600) % 60;
-    playTime.textContent = addZero(hour) + ":" + addZero(minute) + ":" + addZero(second);
-
-}
-
-function addZero(num) {
-    if (num <= 9) {
-        num = '0' + num;
-    }
-    return num;
 }
