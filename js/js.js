@@ -15,16 +15,15 @@ window.getQuestionElem = function () {
 window.getQuestionElem();
 
 
-//функция присвоения загадыных чисел
-
-
 
 
 
 let countStep = 1;
 let checkButton = document.querySelector('.check-button');
-
 checkButton.addEventListener('click', runCheck);
+
+
+
 
 let victory = document.querySelector('.modal-victory');
 let questNumber = document.querySelector('.quest-number');
