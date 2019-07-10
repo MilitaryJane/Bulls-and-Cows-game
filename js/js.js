@@ -4,109 +4,25 @@ window.addEventListener('DOMContentLoaded', window.timerUtils.startTimer);
 
 
 let questionElems = document.querySelectorAll('.question'); // исп. 3 раза (присвоение значений(2), проверка победы)
-let arrayOfRandomNumber = getArrayOfRandomNumber(); //получение текущего массива загаданных цифер
+window.arrayOfRandomNumber = getArrayOfRandomNumber(); //получение текущего массива загаданных цифер должна быть глобальной
 
 
-getQuestionElem();
-
-function getQuestionElem() {
+window.getQuestionElem = function () {
     for (let i = 0; i < questionElems.length; i++) {
         questionElems[i].textContent = arrayOfRandomNumber[i];
     }
-}
+};
+window.getQuestionElem();
+
+
+//функция присвоения загадыных чисел
+
 
 
 
 
 let countStep = 1;
-let answerElems = document.querySelectorAll('.answer');
-answerElems = Array.prototype.slice.call(answerElems);
 let checkButton = document.querySelector('.check-button');
-let plusButtonElems = document.querySelectorAll('.button-plus');
-let minusButtonElems = document.querySelectorAll('.button-minus');
-let keyboard = document.querySelectorAll('.keyboard');
-let self = document.activeElement;
-
-
-
-for (let j = 0; j < answerElems.length; j++) {
-    answerElems[j].addEventListener('click', function (evt) {
-        evt.preventDefault();
-        answerElems[j].value = '';
-    });
-
-    answerElems[j].addEventListener('focus', function (evt) {
-        evt.preventDefault();
-        this.addEventListener('keypress', function (evt) {
-            evt.preventDefault();
-            if (evt.keyCode >= 48 && evt.keyCode <= 57 || evt.keyCode >= 96 && evt.keyCode <= 105) {
-                this.value = String.fromCharCode(evt.keyCode);
-
-            }
-
-
-        });
-        self = evt.target;
-    });
-
-}
-
-
-for (let i = 0; i < keyboard.length; i++) {
-    keyboard[i].addEventListener('click', function (evt) {
-        evt.preventDefault();
-        self.value = this.getAttribute('data-type');
-        transferFocus();
-    });
-}
-
-function transferFocus() {
-    let currentIndex = answerElems.indexOf(self);
-    if (currentIndex + 1 < arrayOfRandomNumber.length) {
-        answerElems[currentIndex + 1].focus();
-    } else {
-        checkButton.focus();
-    }
-}
-
-for (let j = 0; j < answerElems.length; j++) {
-    plusButtonElems[j].addEventListener('click', function (event) {
-        event.preventDefault();
-        if (+answerElems[j].value < 9) {
-            answerElems[j].value = +answerElems[j].value + 1;
-        } else {
-            answerElems[j].value = 0;
-        }
-    });
-    minusButtonElems[j].addEventListener('click', function (event) {
-        event.preventDefault();
-        if (+answerElems[j].value > 0) {
-            answerElems[j].value = +answerElems[j].value - 1;
-        } else {
-            answerElems[j].value = 9;
-        }
-    });
-}
-
-
-
-
-function getKeyboardNumber(evt) {
-    evt.preventDefault();
-    for (let i = 0; i < answerElems.length; i++) {
-        if (answerElems[i].value == '') {
-            answerElems[i].value = this.getAttribute('data-type');
-            if (i + 1 < answerElems.length) {
-                answerElems[i + 1].focus();
-                break
-            } else {
-                checkButton.focus();
-            }
-
-        }
-    }
-}
-
 
 checkButton.addEventListener('click', runCheck);
 
@@ -116,6 +32,8 @@ let playTime = victory.querySelector('.play-time');
 let playMoovs = victory.querySelector('.play-moovs');
 let buttonStartVictoryModal = victory.querySelector('.new-start-button');
 let buttonVictoryClose = victory.querySelector('.button-close');
+
+
 buttonVictoryClose.addEventListener('click', function (event) {
     event.preventDefault();
     victory.classList.remove('modal-show');
@@ -136,9 +54,9 @@ window.addEventListener('keydown', function (event) {
 let questionMask = document.querySelectorAll('.question-mask');
 
 function runCheck() {
-    if (inputValidation(answerElems, arrayOfRandomNumber)) {
+    if (inputValidation(window.answerElems, arrayOfRandomNumber)) {
 
-        let answer = getArrayOfAnswer(answerElems);
+        let answer = getArrayOfAnswer(window.answerElems);
         let bulls = areBulls(answer, arrayOfRandomNumber);
         let cows = areCows(answer, arrayOfRandomNumber, bulls);
 
@@ -178,10 +96,11 @@ function runCheck() {
         }
         countStep++;
 
-        for (let i = 0; i < answerElems.length; i++) {
-            answerElems[i].value = '';
-        }
-        answerElems[0].focus();
+
+        window.answerElems.forEach(function (element) {
+            element.value = ''
+        })
+        window.answerElems[0].focus();
     }
 }
 

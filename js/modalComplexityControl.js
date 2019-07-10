@@ -43,8 +43,8 @@
         if (this.value == "true") {
             currentCheckedElem = getChecked();
             createElement();
-            arrayOfRandomNumber = getArrayOfRandomNumber(getChecked().value);
-            getQuestionElem();
+            window.arrayOfRandomNumber = getArrayOfRandomNumber(getChecked().value);
+            window.getQuestionElem();
             answerElems[0].focus();
 
             //функция перезапуска игры
