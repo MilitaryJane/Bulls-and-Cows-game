@@ -646,7 +646,7 @@ input[type="radio"].visually-hidden {
     z-index: 104;
 }
 
-.modal-victory-show {
+.modal-show {
     display: block;
     animation: bounce 1s;
 }
@@ -905,11 +905,6 @@ input[type="radio"].visually-hidden {
     z-index: 104;
 }
 
-.modal-rules-show {
-    display: block;
-    animation: bounce 1s;
-}
-
 .modal-rules h1 {
     margin: 15px 0;
     padding: 0;
@@ -946,12 +941,6 @@ input[type="radio"].visually-hidden {
     z-index: 104;
     border-radius: 25px;
     color: #ffffff;
-}
-
-.modal-warning-show {
-    display: block;
-
-    animation: bounce 0.6s;
 }
 
 .modal-warning h1 {

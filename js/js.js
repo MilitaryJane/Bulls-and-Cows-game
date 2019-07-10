@@ -2,50 +2,27 @@
 
 window.addEventListener('DOMContentLoaded', window.timerUtils.startTimer);
 
-//модуль открытия и закрытия попапа правила 
-let rules = document.querySelector('.rules');
-let modalRules = document.querySelector('.modal-rules');
-let overlay = document.querySelector('.modal-overlay');
-let buttonRulesClose = modalRules.querySelector('.button-close');
-let buttonStart = document.querySelectorAll('.new-start-button');
 
-rules.addEventListener('click', function (event) {
-    event.preventDefault();
-    modalRules.classList.add('modal-rules-show');
-    overlay.classList.add('overlay-show');
-    buttonStart[1].focus();
-});
-
-buttonRulesClose.addEventListener('click', function (event) {
-    event.preventDefault();
-    modalRules.classList.remove('modal-rules-show');
-    overlay.classList.remove('overlay-show');
-});
-
-window.addEventListener('keydown', function (event) {
-    if (event.keyCode === 27) {
-        if (modalRules.classList.contains('modal-rules-show')) {
-            event.preventDefault();
-            modalRules.classList.remove('modal-rules-show');
-            overlay.classList.remove('overlay-show');
-        }
-    }
-});
+let questionElems = document.querySelectorAll('.question'); // исп. 3 раза (присвоение значений(2), проверка победы)
 
 
-
-
-
-
-let questionElems = document.querySelectorAll('.question');
+//управление сложностью
 let radios = document.querySelectorAll('.complexity');
-let complexity2 = document.querySelectorAll('.complexity2');
-let complexity3 = document.querySelectorAll('.complexity3');
 
 
+let modalWarning = document.querySelector('.modal-warning');
+for (let i = 0; i < radios.length; i++) {
+    radios[i].addEventListener('change', openWarningModal)
+}
+
+
+
+
+
+//получение текущего массива загаданных цифер
 let arrayOfRandomNumber = getArrayOfRandomNumber(getChecked().value);
 
-
+//ф-ия определяет какая радиокнопка выбрана
 function getChecked() {
     let checked;
     for (let i = 0; i < radios.length; i++) {
@@ -58,26 +35,13 @@ function getChecked() {
 
 
 
-let currentCheckedElem = getChecked();
-
-
-
-
-
-let modalWarning = document.querySelector('.modal-warning');
-for (let i = 0; i < radios.length; i++) {
-    radios[i].addEventListener('change', openWarningModal)
-}
-
-//функуия отурытия попапа подтверждения выбора
+//функция открытия попапа подтверждения выбора
 function openWarningModal() {
-    modalWarning.classList.add('modal-warning-show');
-    overlay.classList.add('overlay-show');
+    modalWarning.classList.add('modal-show');
+    window.overlayUtils.overlayShow();
 }
 
-
-
-
+let currentCheckedElem = getChecked();
 let buttonOk = modalWarning.querySelector('.button-ok');
 let buttonCancel = modalWarning.querySelector('.button-cancel');
 buttonOk.addEventListener('click', IsConfirmChange);
@@ -87,8 +51,8 @@ function IsConfirmChange(evt) {
     evt.preventDefault();
 
     (function closeWarningModal() {
-        modalWarning.classList.remove('modal-warning-show');
-        overlay.classList.remove('overlay-show');
+        modalWarning.classList.remove('modal-show');
+        window.overlayUtils.overlayHide();
 
     })();
 
@@ -116,6 +80,8 @@ function IsConfirmChange(evt) {
 
 
 
+let complexity2 = document.querySelectorAll('.complexity2');
+let complexity3 = document.querySelectorAll('.complexity3');
 
 function createElement() {
     let resultsElems = document.querySelectorAll('.result');
@@ -250,19 +216,20 @@ let victory = document.querySelector('.modal-victory');
 let questNumber = document.querySelector('.quest-number');
 let playTime = victory.querySelector('.play-time');
 let playMoovs = victory.querySelector('.play-moovs');
+let buttonStartVictoryModal = victory.querySelector('.new-start-button');
 let buttonVictoryClose = victory.querySelector('.button-close');
 buttonVictoryClose.addEventListener('click', function (event) {
     event.preventDefault();
-    victory.classList.remove('modal-victory-show');
-    overlay.classList.remove('overlay-show');
+    victory.classList.remove('modal-show');
+    window.overlayUtils.overlayHide();
 });
 
 window.addEventListener('keydown', function (event) {
     if (event.keyCode === 27) {
-        if (victory.classList.contains('modal-victory-show')) {
+        if (victory.classList.contains('modal-show')) {
             event.preventDefault();
-            victory.classList.remove('modal-victory-show');
-            overlay.classList.remove('overlay-show');
+            victory.classList.remove('modal-show');
+            window.overlayUtils.overlayHide();
         }
     }
 });
@@ -331,17 +298,6 @@ function areBulls(userArray, arrayOfRandomNumber) {
     return countBulls;
 }
 
-function toShowvVictory() {
-    questNumber.textContent = arrayOfRandomNumber.join(' ');
-    playTime.textContent = window.timerUtils.timeTranslater();
-    playMoovs.textContent = countStep;
-    victory.classList.add('modal-victory-show');
-    overlay.classList.add('overlay-show');
-    buttonStart[0].focus();
-    checkButton.removeEventListener('click', runCheck);
-
-}
-
 function areCows(userArray, arrayOfRandomNumber, bulls) {
     let countCows = 0;
     for (let i = 0; i < userArray.length; i++) {
@@ -355,7 +311,16 @@ function areCows(userArray, arrayOfRandomNumber, bulls) {
     return countCows;
 }
 
+function toShowvVictory() {
+    questNumber.textContent = arrayOfRandomNumber.join(' ');
+    playTime.textContent = window.timerUtils.timeTranslater();
+    playMoovs.textContent = countStep;
+    victory.classList.add('modal-show');
+    window.overlayUtils.overlayShow();
+    buttonStartVictoryModal.focus();
+    checkButton.removeEventListener('click', runCheck);
 
+}
 
 //модуль проверки валидности вводимых данных
 function inputValidation(array, array2) {
