@@ -4,109 +4,7 @@ window.addEventListener('DOMContentLoaded', window.timerUtils.startTimer);
 
 
 let questionElems = document.querySelectorAll('.question'); // исп. 3 раза (присвоение значений(2), проверка победы)
-
-
-//управление сложностью
-let radios = document.querySelectorAll('.complexity');
-
-
-let modalWarning = document.querySelector('.modal-warning');
-for (let i = 0; i < radios.length; i++) {
-    radios[i].addEventListener('change', openWarningModal)
-}
-
-
-
-
-
-//получение текущего массива загаданных цифер
-let arrayOfRandomNumber = getArrayOfRandomNumber(getChecked().value);
-
-//ф-ия определяет какая радиокнопка выбрана
-function getChecked() {
-    let checked;
-    for (let i = 0; i < radios.length; i++) {
-        if (radios[i].checked) {
-            checked = radios[i];
-        }
-    }
-    return checked;
-}
-
-
-
-//функция открытия попапа подтверждения выбора
-function openWarningModal() {
-    modalWarning.classList.add('modal-show');
-    window.overlayUtils.overlayShow();
-}
-
-let currentCheckedElem = getChecked();
-let buttonOk = modalWarning.querySelector('.button-ok');
-let buttonCancel = modalWarning.querySelector('.button-cancel');
-buttonOk.addEventListener('click', IsConfirmChange);
-buttonCancel.addEventListener('click', IsConfirmChange);
-
-function IsConfirmChange(evt) {
-    evt.preventDefault();
-
-    (function closeWarningModal() {
-        modalWarning.classList.remove('modal-show');
-        window.overlayUtils.overlayHide();
-
-    })();
-
-    if (this.value == "true") {
-        currentCheckedElem = getChecked();
-        createElement();
-        arrayOfRandomNumber = getArrayOfRandomNumber(getChecked().value);
-        getQuestionElem();
-        answerElems[0].focus();
-
-        //функция перезапуска игры
-        (function () {
-            for (let i = 0; i < questionMask.length; i++) {
-                if (questionMask[i].classList.contains('visually-hidden')) {
-                    questionMask[i].classList.remove('visually-hidden');
-                }
-            }
-            checkButton.addEventListener('click', runCheck);
-            window.timerUtils.startTimer();
-
-        })();
-    }
-    currentCheckedElem.checked = true;
-}
-
-
-
-let complexity2 = document.querySelectorAll('.complexity2');
-let complexity3 = document.querySelectorAll('.complexity3');
-
-function createElement() {
-    let resultsElems = document.querySelectorAll('.result');
-    for (let i = 0; i < resultsElems.length; i++) {
-        resultsElems[i].textContent = '';
-    }
-    for (let i = 0; i < complexity2.length; i++) {
-        complexity2[i].classList.add('complexity2');
-        complexity3[i].classList.add('complexity3');
-        countStep = 1;
-
-
-        if (getChecked().value == 5) {
-            complexity2[i].classList.remove('complexity2');
-
-
-        } else if (getChecked().value == 6) {
-            complexity2[i].classList.remove('complexity2');
-            complexity3[i].classList.remove('complexity3');
-        }
-    }
-}
-
-
-
+let arrayOfRandomNumber = getArrayOfRandomNumber(); //получение текущего массива загаданных цифер
 
 
 getQuestionElem();
@@ -359,6 +257,7 @@ function getArrayOfAnswer(array) {
 
 
 function getArrayOfRandomNumber(number) {
+    number = number || 4;
     let array = [];
 
     next:
