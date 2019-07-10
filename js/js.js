@@ -81,10 +81,14 @@ function runCheck() {
         cowsSpan.textContent = ', коров: ' + cows;
         p.appendChild(cowsSpan);
 
-        if (countStep < 16 || countStep > 30) {
+
+        if (countStep < 16) {
             versions.appendChild(p);
+            // } 
+            // else if (countStep > 15 && countStep < 30) {
+            //     versions2.appendChild(p);
         } else {
-            versions2.appendChild(p);
+            alert('Вы сделали слишком много шагов. Начните Сначала!');
         }
         if (bulls == arrayOfRandomNumber.length) {
             for (let i = 0; i < questionElems.length; i++) {
@@ -110,7 +114,6 @@ function areBulls(userArray, arrayOfRandomNumber) {
             countBulls++;
         }
     }
-
     return countBulls;
 }
 
@@ -160,7 +163,6 @@ function inputValidation(array, array2) {
     }
     return true;
 }
-
 
 
 
