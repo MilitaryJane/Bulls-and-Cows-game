@@ -44,7 +44,7 @@
                 alert('Вы сделали слишком много шагов. Начните Сначала!');
             }
             if (bulls == arrayOfRandomNumber.length) {
-                for (let i = 0; i < questionElems.length; i++) {
+                for (let i = 0; i < window.questionElems.length; i++) {
                     questionMask[i].classList.add('visually-hidden');
                 }
                 window.toShowvVictory();

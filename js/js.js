@@ -1,37 +1,42 @@
 'use strict';
+(function () {
 
+    window.addEventListener('DOMContentLoaded', window.timerUtils.startTimer);
 
+    window.getArrayOfRandomNumber = function (number) {
+        number = number || 4;
+        let array = [];
 
-window.addEventListener('DOMContentLoaded', window.timer_utils.startTimer);
-
-let questionElems = document.querySelectorAll('.question'); // исп. 3 раза (присвоение значений(2), проверка победы)
-questionElems = Array.prototype.slice.call(questionElems);
-window.arrayOfRandomNumber = getArrayOfRandomNumber(); //получение текущего массива загаданных цифер должна быть глобальной
-
-window.getQuestionElem = function () {
-    questionElems.forEach(function (element, index) {
-        element.textContent = arrayOfRandomNumber[index];
-    })
-};
-window.getQuestionElem();
-
-
-function getArrayOfRandomNumber(number) {
-    number = number || 4;
-    let array = [];
-
-    next:
-        while (array.length < number) {
-            let randomNumber = Math.floor(Math.random() * 10);
-            let i = 0;
-            while (i <= array.length - 1) {
-                if (randomNumber == array[i]) {
-                    continue next;
+        next:
+            while (array.length < number) {
+                let randomNumber = Math.floor(Math.random() * 10);
+                let i = 0;
+                while (i <= array.length - 1) {
+                    if (randomNumber == array[i]) {
+                        continue next;
+                    }
+                    i++;
                 }
-                i++;
+                array.push(randomNumber);
             }
-            array.push(randomNumber);
-        }
-    console.log(array);
-    return array;
-}
+        console.log(array);
+        return array;
+    }
+    window.arrayOfRandomNumber = window.getArrayOfRandomNumber();
+
+    window.questionElems = document.querySelectorAll('.question');
+    window.questionElems = Array.prototype.slice.call(window.questionElems);
+
+
+    window.getQuestionElem = function () {
+        window.questionElems.forEach(function (element, index) {
+            element.textContent = arrayOfRandomNumber[index];
+        })
+    };
+    window.getQuestionElem();
+
+
+
+
+
+})();

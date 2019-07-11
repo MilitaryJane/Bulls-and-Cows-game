@@ -43,7 +43,7 @@
         if (this.value == "true") {
             currentCheckedElem = getChecked();
             createElement();
-            window.arrayOfRandomNumber = getArrayOfRandomNumber(getChecked().value);
+            window.arrayOfRandomNumber = window.getArrayOfRandomNumber(getChecked().value);
             window.getQuestionElem();
             answerElems[0].focus();
 
