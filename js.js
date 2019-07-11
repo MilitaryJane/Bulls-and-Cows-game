@@ -2,7 +2,7 @@
 
 
 
-window.addEventListener('DOMContentLoaded', window.timerUtils.startTimer);
+window.addEventListener('DOMContentLoaded', window.timer_utils.startTimer);
 
 let questionElems = document.querySelectorAll('.question'); // исп. 3 раза (присвоение значений(2), проверка победы)
 questionElems = Array.prototype.slice.call(questionElems);
