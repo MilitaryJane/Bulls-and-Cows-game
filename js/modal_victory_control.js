@@ -7,11 +7,6 @@
     let buttonStartVictoryModal = victory.querySelector('.new-start-button');
     let buttonVictoryClose = victory.querySelector('.button-close');
 
-
-
-
-
-
     window.toShowvVictory = function () {
         openVictory();
         questNumber.textContent = arrayOfRandomNumber.join(' ');
@@ -46,7 +41,6 @@
 
         document.addEventListener('keydown', onPopupEscPress);
     }
-
 
     buttonVictoryClose.addEventListener('click', closeVictory);
 
