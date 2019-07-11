@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="ru">
 
@@ -250,4 +251,258 @@
 
 </body>
 
+=======
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8">
+    <title>Игра "Быки и Коровы".</title>
+    <link href="img/cow.jpg" rel="shortcut icon" type="image/x-icon">
+    <!-- <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&amp;subset=cyrillic" rel="stylesheet"> -->
+    <link href="css/normalize.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <header class="main-header">
+        <nav class="main-navigation">
+            <ul class="top-menu menu-left">
+                <li><a class="game-complexity" href="#">Сложность игры</a>
+                    <ul class="inner-menu">
+                        <li class="sub-menu">
+                            <input class="complexity visually-hidden" type="radio" id="complexity1" name="complexity"
+                                value="4" checked>
+                            <label for="complexity1">Новичок - 4 цифры</label>
+                        </li>
+                        <li class="sub-menu">
+                            <input class="complexity visually-hidden" type="radio" id="complexity2" name="complexity"
+                                value="5">
+                            <label for="complexity2">Любитель - 5 цифр</label>
+                        </li>
+                        <li class="sub-menu">
+                            <input class="complexity visually-hidden" type="radio" id="complexity3" name="complexity"
+                                value="6">
+                            <label for="complexity3">Профессионал - 6 цифр</label>
+                        </li>
+                    </ul>
+                </li>
+                <li><a class="rules" href="#">Правила игры</a></li>
+            </ul>
+            <div class="menu-title">
+                <img src="img/game-logo.png" width="508" height="149" alt="Игра Быки и коровы">
+            </div>
+            <ul class="menu-right">
+                <li><a class="new" href="index.html">Новая игра</a></li>
+                <li><a class="back-to-main" href="#">На главную</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <diV class="main-field">
+            <div class="versions left-field"></div>
+
+            <div class="central">
+
+                <div class="question-field">
+                    <div class="question-mask">?</div>
+                    <div class="question"></div>
+
+                    <div class="question-mask">?</div>
+                    <div class="question"></div>
+
+                    <div class="question-mask">?</div>
+                    <div class="question"></div>
+
+                    <div class="question-mask">?</div>
+                    <div class="question"></div>
+
+                    <div class="question-mask complexity2">?</div>
+                    <div class="question complexity2"></div>
+
+                    <div class="question-mask complexity3">?</div>
+                    <div class="question complexity3"></div>
+                </div>
+
+                <div class="button-plus-field">
+                    <button class="button-plus" type="button"><span class="visually-hidden">плюс</span></button>
+                    <button class="button-plus" type="button"><span class="visually-hidden">плюс</span></button>
+                    <button class="button-plus" type="button"><span class="visually-hidden">плюс</span></button>
+                    <button class="button-plus" type="button"><span class="visually-hidden">плюс</span></button>
+                    <button class="button-plus complexity2" type="button"><span
+                            class="visually-hidden">плюс</span></button>
+                    <button class="button-plus complexity3" type="button"><span
+                            class="visually-hidden">плюс</span></button>
+                </div>
+
+                <div class="answer-field">
+                    <input class="answer" type="text" maxlength="1" value="" autofocus tabindex="1">
+                    <input class="answer" type="text" maxlength="1" value="" tabindex="1">
+                    <input class="answer" type="text" maxlength="1" value="" tabindex="1">
+                    <input class="answer" type="text" maxlength="1" value="" tabindex="1">
+                    <input class="answer complexity2" type="text" maxlength="1" value="" tabindex="1">
+                    <input class="answer complexity3" type="text" maxlength="1" value="" tabindex="1">
+                </div>
+
+                <div class="button-minus-field">
+                    <button class="button-minus" type="button"><span class="visually-hidden">минус</span></button>
+                    <button class="button-minus" type="button"><span class="visually-hidden">минус</span></button>
+                    <button class="button-minus" type="button"><span class="visually-hidden">минус</span></button>
+                    <button class="button-minus" type="button"><span class="visually-hidden">минус</span></button>
+                    <button class="button-minus complexity2" type="button"><span
+                            class="visually-hidden">минус</span></button>
+                    <button class="button-minus complexity3" type="button"><span
+                            class="visually-hidden">минус</span></button>
+
+                </div>
+
+                <input class="button check-button" type="submit" value="Проверить" tabindex="2">
+
+                <div class="keyboard-field">
+                    <button class="keyboard" data-type="1">1</button>
+                    <button class="keyboard" data-type="2">2</button>
+                    <button class="keyboard" data-type="3">3</button>
+                    <button class="keyboard" data-type="4">4</button>
+                    <button class="keyboard" data-type="5">5</button>
+                    <button class="keyboard" data-type="6">6</button>
+                    <button class="keyboard" data-type="7">7</button>
+                    <button class="keyboard" data-type="8">8</button>
+                    <button class="keyboard" data-type="9">9</button>
+                    <button class="keyboard" data-type="0">0</button>
+                </div>
+            </div>
+
+            <div class="versions2 right-field"></div>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-contacts"></div>
+            <p class="footer-contacts-name">
+                Задумка и реализация проекта: <br>
+                Любовь Княгинская
+            </p>
+            <div class="footer-contacts-group">
+                <p class="footer-contacts-phone"><a href="tel:+79031449667">+7 (903) 144-96-67</a></p>
+                <p class="footer-contacts-email"><a
+                        href="mailto:lyubovknyaginskaya@gmail.com">lyubovknyaginskaya@gmail.com</a></p>
+                <div>
+                </div>
+            </div>
+            <div class="footer-social">
+                <ul class="social-button-list">
+                    <li class="social-button-item">
+                        <a class="social-button" href="mailto:lyubovknyaginskaya@gmail.com">
+                            <span class="visually-hidden">EMail</span>
+                            <img src="img/email.png" alt="EMail">
+                        </a>
+                    </li>
+                    <li class="social-button-item">
+                        <a class="social-button" href="https://github.com/MilitaryJane" target="_blanc">
+                            <span class="visually-hidden">GitHub</span>
+                            <img src="img/github.png" alt="GitHub">
+                        </a>
+                    </li>
+                    <li class="social-button-item">
+                        <a class="social-button" href="https://vk.com/id738616" target="_blanc">
+                            <span class="visually-hidden">ВКонтакте</span>
+                            <img src="img/vk.png" alt="VK">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+
+
+
+    <section class="modal modal-victory">
+        <h1 class="modal-title">УРА! ПОБЕДА!</h1>
+        <div class="modal-container">
+            <div class="modal-game-statistics">
+                <p>Было загадано число:
+                    <span class="quest-number"></span>
+                </p>
+                <p>Время игры:
+                    <span class="play-time"></span>
+                </p>
+                <p>Сделано ходов:
+                    <span class="play-moovs"></span>
+                </p>
+            </div>
+
+            <div class="modal-image">
+                <img class="image-cow" src="img/cow.png" width="243" height="161" alt="Корова">
+                <img class="image-bull" src="img/bull.png" width="282" height="219" alt="Бык">
+                <div class="hearts-block">
+                    <img class="heart1" src="img/heart1.png" alt="Сердце">
+                    <img class="heart2" src="img/heart2.png" alt="Сердце">
+                    <img class="heart3" src="img/heart2.png" alt="Сердце">
+                    <img class="heart4" src="img/heart1.png" alt="Сердце">
+                    <img class="heart5" src="img/heart1.png" alt="Сердце">
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-button">
+            <a class="modal-bt new-start-button" href="index.html">Новая игра</a>
+            <a class="modal-bt menu-button" href="#">Вернуться на главную</a>
+        </div>
+
+        <button class="button-close"><span class="visually-hidden">X</span></button>
+    </section>
+    <div class="modal-overlay"></div>
+
+
+    <section class="modal modal-rules">
+        <h1>Правила игры "Быки и коровы"</h1>
+
+        <p>Компьютер задумывает тайное 4-значное число с неповторяющимися цифрами. Игрок делает первую попытку отгадать
+            число.
+            Попытка — это 4-значное число с неповторяющимися цифрами, сообщаемое компьютеру. Компьютер сообщает в ответ,
+            сколько цифр угадано без совпадения с их позициями в тайном числе (то есть количество коров)
+            и сколько угадано вплоть до позиции в тайном числе (то есть количество быков).</p>
+        <p> Например:</p>
+        <p>Задумано тайное число «3219».</p>
+        <p>Попытка: «2310».</p>
+        <p>Результат: две «коровы» (две цифры: «2» и «3» — угаданы на неверных позициях) и один «бык» (одна цифра «1»
+            угадана вплоть до позиции).</p>
+
+        <p>Игрок побеждает тогда, когда будет отгадана вся последовательность чисел.</p>
+
+        <p>Готов испытать себя?</p>
+
+        <a class="modal-bt new-start-button" href="index.html">Начать игру</a>
+
+        <button class="button-close"><span class="visually-hidden">X</span></button>
+
+    </section>
+
+
+    <section class="modal modal-warning">
+        <h1>Внимание!</h1>
+        <p>Игровой прогресс будет потерян.</p>
+        <p>Начать новую игру?</p>
+        <button class="modal-bt button-ok" value="true">Начать</button>
+        <button class="modal-bt button-cancel" value="false">Отмена</button>
+    </section>
+
+    <script src="js/timer_utils.js"></script>
+    <script src="js/overlay_utils.js"></script>
+    <script src="js/modal_rules_control.js"></script>
+    <script src="js/value_check_module.js"></script>
+    <script src="js/js.js"></script>
+
+    <script src="js/game_button_control.js"></script>
+
+    <script src="js/modal_complexity_control.js"></script>
+    <script src="js/modal_victory_control.js"></script>
+
+
+</body>
+
+>>>>>>> 32d656cedda39c251eb407eed0873e29c66554cf
 </html>
